@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title description">
+  <title id="title">Mechatronics-Continuum</title>
+  <desc id="description">A restrained circuit and mechanical linkage mark</desc>
+  <rect width="512" height="512" rx="72" fill="#174d68"/>
+  <path d="M96 256h72l44-88 88 176 44-88h72" fill="none" stroke="#f7f5ef" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="96" cy="256" r="18" fill="#e58a2b"/>
+  <circle cx="416" cy="256" r="18" fill="#e58a2b"/>
+  <circle cx="256" cy="256" r="48" fill="#174d68" stroke="#e58a2b" stroke-width="20"/>
+</svg>
