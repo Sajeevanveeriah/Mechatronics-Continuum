@@ -9,9 +9,9 @@ test("lesson progression, simulator, theme and accessibility", async ({
   ).toBeVisible();
   await page.getByLabel(/Voltage V/).fill("12");
   await page.getByLabel(/Resistance R/).fill("240");
-  await expect(page.getByText(/0.050 A/)).toBeVisible();
+  await expect(page.getByText("0.050 A", { exact: true })).toBeVisible();
   await page.getByRole("button", { name: "Reset simulator" }).click();
-  await expect(page.getByText(/0.050 A/)).toBeVisible();
+  await expect(page.getByText("0.050 A", { exact: true })).toBeVisible();
   await page.getByRole("button", { name: /Complete & continue/ }).click();
   await expect(
     page.getByRole("heading", { name: "Series circuits" }),
@@ -26,7 +26,7 @@ test("mobile navigation opens and closes", async ({ page, isMobile }) => {
   test.skip(!isMobile);
   await page.goto("");
   await page.getByRole("button", { name: "Menu" }).click();
-  await expect(page.getByRole("navigation")).toHaveClass(/open/);
+  await expect(page.locator(".sidebar")).toHaveClass(/open/);
   await page.getByRole("button", { name: "Close navigation" }).click();
-  await expect(page.getByRole("navigation")).not.toHaveClass(/open/);
+  await expect(page.locator(".sidebar")).not.toHaveClass(/open/);
 });
