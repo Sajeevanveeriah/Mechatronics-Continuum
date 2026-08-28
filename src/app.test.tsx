@@ -14,7 +14,7 @@ describe("shell", () => {
       screen.getByRole("button", { name: "Continue lesson" }),
     ).toBeInTheDocument();
     await waitFor(() =>
-      expect(document.documentElement.dataset.theme).toBe("system"),
+      expect(document.documentElement.dataset.theme).toBe("light"),
     );
     view.unmount();
   });

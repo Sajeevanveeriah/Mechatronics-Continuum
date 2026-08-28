@@ -89,7 +89,8 @@ export function App() {
     };
   }, []);
   useEffect(() => {
-    document.documentElement.dataset.theme = progress.theme;
+    document.documentElement.dataset.theme =
+      progress.theme === "system" ? "light" : progress.theme;
     if (ready) void save(progress);
   }, [progress, ready]);
   useEffect(() => setMenu(false), [route]);

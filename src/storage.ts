@@ -25,7 +25,7 @@ export const seed: Progress = {
   schemaVersion: 1,
   name: "Saj",
   goal: "Reconstruct engineering knowledge and retrieve it accurately in technical interviews.",
-  theme: "system",
+  theme: "light",
   states: {},
   notes: {},
   bookmarks: [],
@@ -84,7 +84,9 @@ export async function load(): Promise<Progress> {
           await d.put("progress", parsed.data, "current");
           await d.delete("progress", "pending");
         }
-        return parsed.data;
+        return parsed.data.theme === "system"
+          ? { ...parsed.data, theme: "light" }
+          : parsed.data;
       }
     }
     return structuredClone(seed);
