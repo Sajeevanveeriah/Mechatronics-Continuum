@@ -95,7 +95,11 @@ export function App() {
       progress.theme === "system" ? "light" : progress.theme;
     if (ready) void save(progress);
   }, [progress, ready]);
-  useEffect(() => setMenu(false), [route]);
+  useEffect(() => {
+    setMenu(false);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, [route]);
 
   const completed = lessons.filter(
     (item) => progress.states[item.id] === "Demonstrated",
