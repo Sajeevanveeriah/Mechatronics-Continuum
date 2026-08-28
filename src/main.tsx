@@ -73,14 +73,17 @@ export function App() {
   const [update, setUpdate] = useState(false);
 
   useEffect(() => {
+    let active = true;
     const onHash = () => setRoute(readRoute());
     addEventListener("hashchange", onHash);
     load().then((stored) => {
+      if (!active) return;
       setProgress(stored);
       setReady(true);
     });
     const unregister = registerSW({ onNeedRefresh: () => setUpdate(true) });
     return () => {
+      active = false;
       removeEventListener("hashchange", onHash);
       unregister?.();
     };
