@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { lessons, lessonById, type Lesson } from "./content";
 import { load, save, seed } from "./storage";
@@ -71,6 +71,7 @@ export function App() {
   const [ready, setReady] = useState(false);
   const [menu, setMenu] = useState(false);
   const [update, setUpdate] = useState(false);
+  const applyUpdate = useRef<ReturnType<typeof registerSW> | null>(null);
 
   useEffect(() => {
     let active = true;
@@ -81,11 +82,12 @@ export function App() {
       setProgress(stored);
       setReady(true);
     });
-    const unregister = registerSW({ onNeedRefresh: () => setUpdate(true) });
+    applyUpdate.current = registerSW({
+      onNeedRefresh: () => setUpdate(true),
+    });
     return () => {
       active = false;
       removeEventListener("hashchange", onHash);
-      unregister?.();
     };
   }, []);
   useEffect(() => {
@@ -180,7 +182,7 @@ export function App() {
       {update && (
         <div className="toast" role="status">
           Update ready{" "}
-          <button onClick={() => location.reload()}>Refresh</button>
+          <button onClick={() => void applyUpdate.current?.()}>Refresh</button>
           <button onClick={() => setUpdate(false)}>Later</button>
         </div>
       )}
