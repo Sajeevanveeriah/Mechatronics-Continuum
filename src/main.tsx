@@ -123,7 +123,10 @@ export function App() {
           Menu
         </button>
       </header>
-      <aside className={`sidebar ${menu ? "open" : ""}`}>
+      <aside
+        className={`sidebar ${menu ? "open" : ""}`}
+        aria-label="Application sidebar"
+      >
         <a className="brand" href="#/today">
           <AppMark />
           <span>
@@ -492,7 +495,7 @@ function LessonPage({
           </p>
         </section>
       </article>
-      <aside className="lesson-rail">
+      <aside className="lesson-rail" aria-label="Lesson outline">
         <div>
           <p className="eyebrow">
             Lesson {index + 1} of {lessons.length}
