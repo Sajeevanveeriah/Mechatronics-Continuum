@@ -870,9 +870,9 @@ textarea {
   }
   .scrim {
     position: fixed;
-    inset: 68px 0 0;
+    inset: 68px 0 0 min(300px, 86vw);
     z-index: 19;
-    width: 100%;
+    width: auto;
     height: auto;
     border: 0;
     background: #0008;
