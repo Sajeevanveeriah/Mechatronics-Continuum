@@ -44,3 +44,25 @@ The interface targets WCAG 2.2 AA with semantic landmarks, skip navigation, labe
 ## Deployment boundary and limitations
 
 GitHub Pages serves the built Vite output at `/Mechatronics-Continuum/`; routing is hash-based so deep views survive static hosting. GitHub Pages is the only supported deployment target and `.vercel` project metadata is explicitly excluded from version control. This repository does not collect telemetry or include credentials. Advanced curriculum nodes remain unavailable until each full content pack and its technical review are complete. Browser storage availability and install prompts vary by browser. Python and C/C++ exercises are reasoning and debugging tasks; code is not claimed to execute in-browser.
+
+## Maintainer handoff
+
+Use `CODE-MAP.md` as the repository navigation map before changing code. The main ownership boundaries are:
+
+- `src/curriculum.ts` defines the Level 0-14 inventory, subject slugs, authored-subject availability and prerequisite labels. Changing names can affect content lookups, stored progress and routes.
+- `src/content.ts` owns published lesson material and its evidence/assessment structure. Curriculum availability should not be marked complete without corresponding authored content and tests.
+- `src/storage.ts` owns the persisted `Progress` schema, recovery record, import/export contract and deterministic review scheduler. Treat schema changes as data migrations, not ordinary refactors.
+- `src/main.tsx` composes navigation, learning workflows and UI state. Keep domain/content rules in their owning modules rather than duplicating them in the view layer.
+- `src/style.css` owns presentation and responsive/accessibility styling. Preserve visible focus, reduced-motion behaviour and reflow when changing layout.
+- `src/*.test.*` and `e2e/app.spec.ts` protect content, curriculum, persistence, assets and complete user flows. Change tests together with the contract they verify.
+- `.github/workflows/ci.yml` verifies the repository; `.github/workflows/deploy-pages.yml` publishes the already-validated application to GitHub Pages.
+
+For the complete file-by-file responsibility and change-risk table, see `CODE-MAP.md`.
+
+### Persistence invariant
+
+`src/storage.ts` deliberately writes a `pending` copy before replacing `current`, then deletes `pending`. On load, a valid pending record can be promoted when needed. Keep that ordering intact unless a replacement recovery strategy is designed and migration-tested.
+
+### Review-scheduling invariant
+
+The review scheduler is deterministic. The selected rating sets a base interval multiplier and recorded mistakes reduce the resulting interval. Changing those factors changes learning behaviour and should be accompanied by scheduler tests and an explanation in the documentation.
