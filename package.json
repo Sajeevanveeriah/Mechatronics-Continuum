@@ -20,7 +20,7 @@
     "katex": "^0.16.22",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "zod": "^4.1.5"
+    "zod": "^4.6.6"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.2",
