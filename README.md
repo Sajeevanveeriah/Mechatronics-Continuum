@@ -44,3 +44,7 @@ The interface targets WCAG 2.2 AA with semantic landmarks, skip navigation, labe
 ## Deployment boundary and limitations
 
 GitHub Pages serves the built Vite output at `/Mechatronics-Continuum/`; routing is hash-based so deep views survive static hosting. GitHub Pages is the only supported deployment target and `.vercel` project metadata is explicitly excluded from version control. This repository does not collect telemetry or include credentials. Advanced curriculum nodes remain unavailable until each full content pack and its technical review are complete. Browser storage availability and install prompts vary by browser. Python and C/C++ exercises are reasoning and debugging tasks; code is not claimed to execute in-browser.
+
+## Project handoff
+
+Read the [project handoff](HANDOFF.md) for current work, checks and the next step.
